@@ -8,7 +8,7 @@
 					v-for="movie, key in list"
 					:key="key"
 				>
-					<MovieItem :movie="movie"/>
+					<MovieItem :movie="movie" @mouseover.native="onMouseover(movie.Poster)"/>
 				</b-col>
 			</template>
 			<template v-else>
@@ -40,6 +40,13 @@ export default {
 			return Boolean(Object.keys(this.list).length)
 		}
 	},
+	methods:
+	{
+		onMouseover(poster)
+		{
+			this.$emit('changePoster', poster)
+		}
+	}
 };
 </script>
 
@@ -48,5 +55,6 @@ export default {
 {
 	margin-bottom: 30px;
 	font-size: 50px;
+	color: #fff;
 }
 </style>
