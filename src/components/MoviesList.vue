@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import MovieItem from './MovieItem.vue'
+import MovieItem from './MovieItem.vue';
 
 export default {
 	name: "MoviesList",
@@ -37,14 +37,14 @@ export default {
 	{
 		isExist()
 		{
-			return Boolean(Object.keys(this.list).length)
+			return Boolean(Object.keys(this.list).length);
 		}
 	},
 	methods:
 	{
 		onMouseover(poster)
 		{
-			this.$emit('changePoster', poster)
+			this.$emit('changePoster', poster);
 		}
 	}
 };

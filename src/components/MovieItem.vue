@@ -28,7 +28,8 @@ export default {
 		},
 	},
 	computed: {
-		posterBg() {
+		posterBg()
+		{
 			return {
 				"background-image": `url(${this.movie.Poster})`,
 			};

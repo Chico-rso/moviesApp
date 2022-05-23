@@ -46,20 +46,28 @@ const moviesStore =
 			},
 			root: true
 		},
-		async fetchMovies({ getters, commit })
+		async fetchMovies({ getters, commit, dispatch })
 		{
 			try
 			{
+				dispatch('toggleLoader', true, {root: true});
 				const { currentPage, moviesPerPage, sliceedIds } = getters;
 				const from = currentPage * moviesPerPage - moviesPerPage;
 				const to = currentPage * moviesPerPage;
 				const moviesToFetch = sliceedIds(from, to);
-				const request = moviesToFetch.map(id => axios.get(`http://www.omdbapi.com/?i=${id}`))
+				const request = moviesToFetch.map(id => axios.get(`http://www.omdbapi.com/?i=${id}`));
 				const response = await Promise.all(request);
 				const movies = serializeResponse(response);
 				commit(MOVIES, movies);
 			}
-			catch (err) { console.log(err) };
+			catch (err)
+			{
+				console.log(err);
+			}
+			finally
+			{
+				dispatch('toggleLoader', false, { root: true });
+			}
 		},
 		changeCurrentPage({ commit, dispatch }, page)
 		{

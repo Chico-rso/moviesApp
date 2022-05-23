@@ -38,7 +38,7 @@ export default {
 		{
 			get()
 			{
-				return this.currentPage
+				return this.currentPage;
 			},
 			set(value)
 			{
@@ -46,7 +46,7 @@ export default {
 			}
 		}
 	},
-}
+};
 </script>
 
 <style scoped>
