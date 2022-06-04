@@ -8,7 +8,11 @@
 					v-for="movie, key in list"
 					:key="key"
 				>
-					<MovieItem :movie="movie" @mouseover.native="onMouseover(movie.Poster)"/>
+					<MovieItem
+						:movie="movie"
+						@mouseover.native="onMouseover(movie.Poster)"
+						@removeItem="onRemoveItem"
+					/>
 				</b-col>
 			</template>
 			<template v-else>
@@ -20,6 +24,7 @@
 
 <script>
 import MovieItem from './MovieItem.vue';
+import { mapActions } from 'vuex';
 
 export default {
 	name: "MoviesList",
@@ -42,9 +47,18 @@ export default {
 	},
 	methods:
 	{
+		...mapActions('movies', ['removeMovie']),
 		onMouseover(poster)
 		{
 			this.$emit('changePoster', poster);
+		},
+		async onRemoveItem({ id, title })
+		{
+			const isConfirmed = await this.$bvModal.msgBoxConfirm(`Are you sure remove: ${title} ?`);
+			if(isConfirmed)
+			{
+				this.removeMovie(id);
+			}
 		}
 	}
 };
