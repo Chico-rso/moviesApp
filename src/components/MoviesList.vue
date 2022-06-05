@@ -1,6 +1,6 @@
 <template>
 	<b-container>
-		<h3 class="list-title">IMDB Top 250</h3>
+		<h3 class="list-title">{{ listTitle }}</h3>
 		<b-row>
 			<template v-if="isExist">
 				<b-col
@@ -24,7 +24,7 @@
 
 <script>
 import MovieItem from './MovieItem.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: "MoviesList",
@@ -40,9 +40,14 @@ export default {
 	},
 	computed:
 	{
+		...mapGetters('movies', ['isSearch']),
 		isExist()
 		{
 			return Boolean(Object.keys(this.list).length);
+		},
+		listTitle()
+		{
+			return this.isSearch ? 'Search result' : 'IMDB Top 250';
 		}
 	},
 	methods:
