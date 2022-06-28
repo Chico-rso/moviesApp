@@ -64,14 +64,14 @@ export default {
 		{
 			this.$router.push({ query: { page } });
 		},
-		onPageQueryChange({page = 1} = {})
+		onPageQueryChange({ page = 1 } = {})
 		{
 			this.changeCurrentPage(Number(page));
 		}
 	},
 	created()
 	{
-		if(this.$route.query.page)
+		if (this.$route.query.page)
 		{
 			this.changeCurrentPage(Number(this.$route.query.page));
 		}
@@ -80,7 +80,8 @@ export default {
 </script>
 
 <style>
-#app {
+#app
+{
 	position: relative;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
