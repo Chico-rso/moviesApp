@@ -1,5 +1,7 @@
 # moviesapp
 
+#demo https://chico-rso.github.io/moviesApp/
+
 ## Project setup
 ```
 npm install
